@@ -58,9 +58,10 @@ class HttpService {
         },
         body: body,
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200||response.statusCode == 201) {
         var body = json.decode(response.body);
-        return Response(body: body, statusCode: response.statusCode);
+         
+        return Response(body: body, statusCode: response.statusCode==201?200:200);
       } else if (response.statusCode == 401) {
         logout();
         return const Response(body: null, statusCode: 401);

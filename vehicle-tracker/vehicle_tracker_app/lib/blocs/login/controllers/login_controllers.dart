@@ -35,4 +35,21 @@ class LoginController extends GetxController {
           primaryAction: DigitDialogActions(label: AppTranslation.OK.tr, action: (context) => Get.back())),
     );
   }
+
+
+void sendOTP(context) async {
+
+final isSent= await LoginHTTPRepository.sendOtp(context, mobileNumber: userNameController.text);
+
+if (isSent) {
+  if (Get.currentRoute!=OTP) {
+    Get.toNamed(OTP);
+  }
+
+  
+} 
+
+
+}
+
 }
