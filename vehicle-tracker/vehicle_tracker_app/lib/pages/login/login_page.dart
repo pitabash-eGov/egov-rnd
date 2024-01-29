@@ -2,6 +2,7 @@ import 'package:digit_components/digit_components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vehicle_tracker_app/constants.dart';
+import 'package:vehicle_tracker_app/router/routes.dart';
 import 'package:vehicle_tracker_app/util/i18n_translations.dart';
 
 import '../../blocs/login/controllers/login_controllers.dart';
@@ -60,7 +61,8 @@ class LoginPage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: kPadding) * 2,
                   child: DigitElevatedButton(
                     child: Text(AppTranslation.LOGIN.tr),
-                    onPressed: () => loginController.login(context),
+                   // onPressed: () => loginController.login(context),
+                   onPressed: () => Get.toNamed(OTP),
                   ),
                 ),
 
