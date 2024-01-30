@@ -82,7 +82,7 @@ class _OTPPageState extends State<OTPPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  // AppTranslation.LOGIN.tr,
+                   AppTranslation.OTP_VERIFY.tr??
                   "OTP Verification",
                   style: textTheme.displayMedium,
                 ),
@@ -90,7 +90,7 @@ class _OTPPageState extends State<OTPPage> {
                   height: 8,
                 ),
                 Text(
-                  "Enter the otp sent to +91-${loginController.userNameController.text}",
+                  "${AppTranslation.ENTER_OTP_SENT}${loginController.userNameController.text}",
                   style: textTheme.labelMedium,
                 ),
 
@@ -144,8 +144,7 @@ class _OTPPageState extends State<OTPPage> {
                 ),
                 _remainingSeconds == 0
                     ? DigitIconButton(
-                        //  iconText: AppTranslation.FORGOT_PASSWORD.tr,
-                        iconText: "Resend OTP",
+                          iconText: AppTranslation.RESEND_OTP.tr??"Resend OTP",
                         onPressed: () {
                           loginController.passwordController.clear();
                           _remainingSeconds = 30;
@@ -155,7 +154,7 @@ class _OTPPageState extends State<OTPPage> {
                           loginController.sendOTP(context);
                         })
                     : Text(
-                        'Request another OTP in $_remainingSeconds seconds',
+                        '${AppTranslation.REQUEST_ANOTHER_OTP.tr} $_remainingSeconds seconds',
                         style: const TextStyle(fontSize: 18),
                       ),
                 // * Login Button

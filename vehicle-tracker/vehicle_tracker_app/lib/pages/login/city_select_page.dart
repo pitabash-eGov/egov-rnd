@@ -50,16 +50,13 @@ class _CitySelectPageState extends State<CitySelectPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Please Select City",
+                 AppTranslation.PLEASE_SELECT_CITY.tr?? "Choose your location",
                   style: textTheme.displayMedium,
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                Text(
-                  "Provide mobile number and validate with OTP sent to you through SMS",
-                  style: textTheme.titleLarge,
-                ),
+               
 
                 //* City Dropdown
                 DigitDropdown<CityHiveModel>(
