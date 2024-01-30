@@ -68,7 +68,7 @@ class LoginHTTPRepository {
       final loginModel = LoginDataModel.fromJson(response.body);
 
       final driverId = await getDriverId(
-          loginModel.access_token, loginModel.UserRequest.uuid, "pg.citya", mobileNumber: username.trim());
+          loginModel.access_token, loginModel.UserRequest.uuid, loginModel.UserRequest.tenantId, mobileNumber: username.trim());
       if (driverId == "") {
         toaster(context, AppTranslation.LOGIN_FAILED_MESSAGE.tr, isError: true);
         return false;
