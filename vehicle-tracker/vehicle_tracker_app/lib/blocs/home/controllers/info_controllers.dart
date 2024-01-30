@@ -38,7 +38,7 @@ class InfoController extends GetxController {
       logout();
       return;
     }
-final selectedCity= await SecureStorageService.read(SELECTCITY);
+final selectedCity= await SecureStorageService.read(CITYCODE);
     await fillList(selectedCity!, operatorId);
   }
 
