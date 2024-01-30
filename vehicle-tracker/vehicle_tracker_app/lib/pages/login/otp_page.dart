@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:digit_components/theme/digit_theme.dart';
 import 'package:digit_components/widgets/atoms/digit_icon_button.dart';
 import 'package:digit_components/widgets/digit_card.dart';
@@ -27,12 +29,36 @@ class _OTPPageState extends State<OTPPage> {
   final FocusNode pinFocusNode = FocusNode();
 
   late LoginController loginController;
+
+  int _remainingSeconds = 30;
+  late Timer _timer;
+
   @override
   void initState() {
-    
     loginController = Get.find<LoginController>();
     loginController.passwordController.clear();
+    startTimer();
     super.initState();
+  }
+
+  void startTimer() {
+    const oneSecond = Duration(seconds: 1);
+    _timer = Timer.periodic(oneSecond, (timer) {
+      setState(() {
+        if (_remainingSeconds == 0) {
+          timer.cancel();
+        } else {
+          _remainingSeconds--;
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    pinFocusNode.dispose();
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -68,7 +94,6 @@ class _OTPPageState extends State<OTPPage> {
                   style: textTheme.labelMedium,
                 ),
 
-               
                 const SizedBox(
                   height: 8,
                 ),
@@ -117,12 +142,22 @@ class _OTPPageState extends State<OTPPage> {
                         ),
                       )),
                 ),
+                _remainingSeconds == 0
+                    ? DigitIconButton(
+                        //  iconText: AppTranslation.FORGOT_PASSWORD.tr,
+                        iconText: "Resend OTP",
+                        onPressed: () {
+                          loginController.passwordController.clear();
+                          _remainingSeconds = 30;
+                          _timer.cancel();
+                          startTimer();
 
-                DigitIconButton(
-                  //  iconText: AppTranslation.FORGOT_PASSWORD.tr,
-                  iconText: "Resend OTP",
-                  onPressed: () => loginController.sendOTP(context),
-                ),
+                          loginController.sendOTP(context);
+                        })
+                    : Text(
+                        'Request another OTP in $_remainingSeconds seconds',
+                        style: const TextStyle(fontSize: 18),
+                      ),
                 // * Login Button
                 Padding(
                   padding: const EdgeInsets.only(top: kPadding) * 2,

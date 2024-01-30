@@ -10,8 +10,9 @@ class LoginController extends GetxController {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   String city = cities.keys.first;
-
+RxBool isLoading = false.obs; 
   void login(context) async {
+   
     final isLogin = await LoginHTTPRepository.login(
       context,
       userNameController.text,
@@ -32,24 +33,19 @@ class LoginController extends GetxController {
           titleText: AppTranslation.FORGOT_PASSWORD.tr,
           titleIcon: const Icon(Icons.warning_rounded, color: Colors.red),
           contentText: AppTranslation.FORGOT_PASSWORD_MESSAGE.tr,
-          primaryAction: DigitDialogActions(label: AppTranslation.OK.tr, action: (context) => Get.back())),
+          primaryAction: DigitDialogActions(
+              label: AppTranslation.OK.tr, action: (context) => Get.back())),
     );
   }
 
+  void sendOTP(context) async {
+    final isSent = await LoginHTTPRepository.sendOtp(context,
+        mobileNumber: userNameController.text);
 
-void sendOTP(context) async {
-
-final isSent= await LoginHTTPRepository.sendOtp(context, mobileNumber: userNameController.text);
-
-if (isSent) {
-  if (Get.currentRoute!=OTP) {
-    Get.toNamed(OTP);
+    if (isSent) {
+      if (Get.currentRoute != OTP) {
+        Get.toNamed(OTP);
+      }
+    }
   }
-
-  
-} 
-
-
-}
-
 }

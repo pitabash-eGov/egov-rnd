@@ -68,7 +68,7 @@ class LoginHTTPRepository {
       final loginModel = LoginDataModel.fromJson(response.body);
 
       final driverId = await getDriverId(
-          loginModel.access_token, loginModel.UserRequest.uuid, "pg.citya");
+          loginModel.access_token, loginModel.UserRequest.uuid, "pg.citya", mobileNumber: username.trim());
       if (driverId == "") {
         toaster(context, AppTranslation.LOGIN_FAILED_MESSAGE.tr, isError: true);
         return false;
@@ -98,12 +98,15 @@ class LoginHTTPRepository {
   }
 
   static Future<String> getDriverId(
-      String authToken, String uuid, String tenantId) async {
+      String authToken, String uuid, String tenantId, {required String mobileNumber}) async {
     try {
-      final url = "$unifiedDevApiUrl/vendor/driver/v1/_search";
-      final loginUrl = "$url?tenantId=$tenantId&ownerIds=$uuid";
+      final url = "$unifiedDevApiUrl/individual/v1/_search";
+      final loginUrl = "$url?tenantId=$tenantId&offset=0&limit=1";
 
       Map<String, dynamic> body = {
+         "Individual": {
+        "mobileNumber": mobileNumber
+    },
         "RequestInfo": {
           "apiId": "Rainmaker",
           "authToken": authToken,
@@ -112,13 +115,13 @@ class LoginHTTPRepository {
 
       final response = await HttpService.postRequest(loginUrl, body);
       if (response.statusCode != 200) {
-        log("Error in getting driver id : ${response.statusCode}");
+        log("Error in getting Individual id : ${response.statusCode}");
         return "";
       }
 
-      return response.body["driver"][0]["id"];
+      return response.body["Individual"][0]["id"];
     } catch (e) {
-      log("Error in getting driver id : ${e.toString()}");
+      log("Error in getting Individual id : ${e.toString()}");
       return "";
     }
   }
