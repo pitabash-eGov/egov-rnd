@@ -162,7 +162,7 @@ class _OTPPageState extends State<OTPPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: kPadding) * 2,
                   child: DigitElevatedButton(
-                    child: Text(AppTranslation.LOGIN.tr),
+                    child: Text(AppTranslation.CONTINUE.tr),
                     onPressed: () => loginController.login(context),
                   ),
                 ),

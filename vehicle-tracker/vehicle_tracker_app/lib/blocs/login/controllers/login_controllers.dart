@@ -21,7 +21,8 @@ RxBool isLoading = false.obs;
     );
 
     if (isLogin) {
-      Get.offAllNamed(HOME);
+     // Get.offAllNamed(HOME);
+     Get.toNamed(SELECTCITY);
     }
   }
 

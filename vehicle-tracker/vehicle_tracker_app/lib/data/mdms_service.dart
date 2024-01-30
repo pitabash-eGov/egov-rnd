@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:vehicle_tracker_app/constants.dart';
 import 'package:vehicle_tracker_app/data/hive_service.dart';
 
 import '../models/mdms/mdms_hive/mdms_hive_model.dart';

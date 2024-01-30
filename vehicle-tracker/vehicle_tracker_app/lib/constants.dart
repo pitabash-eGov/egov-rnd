@@ -23,6 +23,7 @@ const String TENANT_ID = "tenantId";
 const String OPERATOR_ID = "operatorId";
 const String NAME = "name";
 const String MOBILE_NUMBER = "mobileNumber";
+const String CITYCODE="cityCode";
 
 const List<String> hiveBoxes = ["en_IN", "or_IN", "mdms", "tracker", "user"];
 

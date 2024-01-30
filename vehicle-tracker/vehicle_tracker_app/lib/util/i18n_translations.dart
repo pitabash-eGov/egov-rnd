@@ -64,6 +64,7 @@ class AppTranslation extends Translations {
   static String get TRIP_STARTED_SUCCESFULLY_MESSAGE => 'TRIP_STARTED_SUCCESFULLY_MESSAGE';
   static String get TRIP_ENDED_SUCCESFULLY_MESSAGE => 'TRIP_ENDED_SUCCESFULLY_MESSAGE';
   
+  
 
   // ? This was the old way of doing translations
   // ? Its not here for reference, will be deleted soon

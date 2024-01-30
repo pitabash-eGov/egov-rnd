@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: kPadding) * 2,
                   child: DigitElevatedButton(
-                    child: Text(AppTranslation.LOGIN.tr),
+                    child: Text(AppTranslation.CONTINUE.tr),
                     onPressed: () => loginController.sendOTP(context),
                    //onPressed: () => Get.toNamed(OTP),
                   ),
