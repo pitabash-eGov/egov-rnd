@@ -66,6 +66,7 @@ registerAdaptersFunc() {
   Hive.registerAdapter(LocalizationHiveModelAdapter());
 
   // For MDMS data
+  Hive.registerAdapter(CityHiveModelAdapter());
   Hive.registerAdapter(MdmsHiveModelAdapter());
   Hive.registerAdapter(LanguageHiveModelAdapter());
 

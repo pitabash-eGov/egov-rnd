@@ -34,13 +34,14 @@ class MdmsService {
     }
   }
 
-  static Future<MdmsModel?> callMdmsAPI() async {
+  static Future<MdmsResponse?> callMdmsAPI() async {
     
+const url= "https://unified-dev.digit.org/egov-mdms-service/v1/_search?tenantId=pg";
 
-    var response = await HttpService.getRequestWithoutToken(mdmsUrl);
+    var response = await HttpService.getRequestWithoutToken(url);
     if (response.statusCode == 200) {
       Map<String, dynamic> json = response.body;
-      return MdmsModel.fromJson(json);
+      return MdmsResponse.fromJson(json);
     } else {
       return null;
     }

@@ -50,10 +50,7 @@ class LoginPage extends StatelessWidget {
                   label: MOBILE_NUMBER,
                   controller: loginController.userNameController,
                 ),
-                // DigitTextField(
-                //   label: AppTranslation.PASSWORD.tr,
-                //   controller: loginController.passwordController,
-                // ),
+               
 
                 // * City Dropdown
                 // DigitDropdown<String>(
